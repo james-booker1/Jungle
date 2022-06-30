@@ -1,3 +1,20 @@
 // Place all the styles related to the users_controler controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "BootStrap";
+main section.login,
+main section.user-login{
+
+  .signup{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  
+  .submit{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+}
