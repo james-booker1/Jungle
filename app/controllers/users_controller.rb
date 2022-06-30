@@ -1,5 +1,6 @@
-class UsersControlerController < ApplicationController
+class UsersController < ApplicationController
   def new
+    
   end
 
   def create
@@ -10,6 +11,7 @@ class UsersControlerController < ApplicationController
     else
       redirect_to '/signup'
   end
+end
 
   private
 

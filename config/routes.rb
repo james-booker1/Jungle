@@ -19,25 +19,15 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]  
     resources :categories, only: [:index, :new, :create]
   end
-
-  GifVault::Application.routes.draw do
-    # root to: 'gif#cool'
-    
-    # get '/cool' => 'gif#cool'
-    # get '/sweet' => 'gif#sweet
   
-    get '/signup' => 'users#new'
-    post '/users' => 'users#create'
-
-    # these routes are for showing users a login form, logging them in, and logging them out.
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
-
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destory'
+  post '/users' => 'users#create'
 
-end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
