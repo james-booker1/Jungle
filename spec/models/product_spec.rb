@@ -1,58 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  describe 'Validations' do
-    category = Category.create(name:"Extra Shrubs")
-
-    it "checks product is valid" do 
-      product = Product.new(
-          name: "Smart",
-          price_cents: 34.99,
-          quantity: 2,
-          category_id: category.id )
-      
-      expect(product).to be_valid
-    end
-
-    it "checks the name" do
-      product = Product.new(
-          name: nil,
-          price_cents: 34.99,
-          quantity: 2,
-          category_id: category.id )
-      
-      expect(product).not_to be_valid
-    end
-
-    it "checks the price_cents" do
-      product = Product.new(
-          name: "Smart",
-          price_cents: nil,
-          quantity: 2,
-          category_id: category.id )
-      
-      expect(product).not_to be_valid
-    end
-
-    it "checks the quantity" do
-      product = Product.new(
-          name: "Smart",
-          price_cents: 34.99,
-          quantity: nil,
-          category_id: category.id )
-      
-      expect(product).not_to be_valid
+  describe "Validations" do
+    it "should not save without a valid name" do
+      category = Category.new
+      product = Product.new(name: nil, price: 1991, quantity: 9119, category: category)
+      product.save
+      expect(product.errors.full_messages).to include("Name can't be blank")
     end
     
-    it "checks the category" do
-      product = Product.new(
-          name: "Smart",
-          price_cents: 34.99,
-          quantity: 2,
-          category_id: nil )
-      
-      expect(product).not_to be_valid
+    it "should not save without a valid price" do
+      category = Category.new
+      product = Product.new(name: "James", price: false, quantity: 9119, category: category)
+      product.save
+      expect(product.errors.full_messages).to include("Price cents is not a number" || "Price is not a number" || "Price can't be blank")
+    end
+    
+    it "should not save without a valid quantity" do
+      category = Category.new
+      product = Product.new(name: "James", price: 1991, quantity: nil, category: category)
+      product.save
+      expect(product.errors.full_messages).to include("Quantity can't be blank")
     end
 
+    it "should not save without a valid category" do
+      category = Category.new
+      product = Product.new(name: "James", price: 1991, quantity: 9119, category: nil)
+      product.save
+      expect(product.errors.full_messages).to include("Category must exist" || "Category can't be blank")
+    end
+
+    it "should save if all fields are valid" do
+      category = Category.new
+      product = Product.new(name: "James", price: 1991, quantity: 9119, category: category)
+      product.save
+      expect(product).to be_valid
+    end
   end
 end
