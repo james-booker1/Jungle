@@ -4,7 +4,8 @@
 </header>
 <%= form_for :user, url: '/users' do |f| %>
 <div>
- <div> Name: <div><%= f.text_field :name %></div></div>
+ <div> First Name: <div><%= f.text_field :first_name %></div></div>
+ <div> Last name: <div><%= f.text_field :last_name %></div></div>
   <div> Email: <div><%= f.text_field :email %></div></div>
   <div>Password: <div><%= f.password_field :password %></div></div>
   <div>Password Confirmation: <div><%= f.password_field :password_confirmation %></div></div>
